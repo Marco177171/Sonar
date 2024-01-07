@@ -2,6 +2,7 @@
 
 #include "sonar.h"
 
+
 // void	ft_listen(int *sockfd, int *connfd)
 // {
 // 	int	len;
@@ -31,7 +32,7 @@
 // 	}
 // }
 
-void	ft_setup_server(t_user *user, t_room *room, t_message *message)
+void	ft_setup_server(char *arg)
 {
 	int	sockfd;
 	int	connfd;
@@ -39,6 +40,8 @@ void	ft_setup_server(t_user *user, t_room *room, t_message *message)
 	// int	pid;
 	struct sockaddr_in	servaddr;
 	struct sockaddr_in	cli;
+
+    (void)arg;
 
 	// socket create and verification
 	sockfd = socket(AF_INET, SOCK_STREAM, 0);
@@ -57,7 +60,6 @@ void	ft_setup_server(t_user *user, t_room *room, t_message *message)
 		printf("SONAR: room socket bind failed. Retry\n");
 		return ;
 	}
-	user->is_host = 1;
 	// Now server is ready to listen and verification
 	if (listen(sockfd, 5) != 0)
 	{
@@ -76,8 +78,5 @@ void	ft_setup_server(t_user *user, t_room *room, t_message *message)
 	}
 	else
 		printf("SONAR: new entry!\n");
-	ft_chat(connfd, user, room, message);
-	close(sockfd);
-	close(connfd);
 	return ;
 }

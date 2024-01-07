@@ -10,10 +10,16 @@ void	ft_free_user(t_user *user)
 
 void	ft_free_room(t_room *room)
 {
-	if (room->name)
-		free(room->name);
-	if (room->key)
-		free(room->key);
+	// if (room->name)
+	// 	free(room->name);
+	// if (room->key)
+	// 	free(room->key);
+	while (room->next)
+	{
+		t_room *tmp = room;
+		room = room->next;
+		free(tmp);
+	}
 }
 
 void	ft_free_and_exit(t_user *user, t_room *room)

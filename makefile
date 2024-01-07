@@ -1,18 +1,24 @@
 NAME = sonar
 CC = gcc
 FLAGS = -Wall -Wextra -Werror 
-READLINE = -L.local/lib -lreadline
 NCURSES = -lncurses
-SRC = *.c
-UTILS = ./utilities/*.c
+SRC = ft_server.c ft_free_and_exit.c room.c sonar.c
+UTILS = ft_split.c ft_strcmp.c ft_strdup.c ft_strjoin.c ft_strlen.c ft_strncmp.c
+UTILSDIR = utilities
+UTILSOBJ = $(UTILS:%.c=$(UTILSDIR)/%.o)
+OBJ = $(SRC:%.c=%.o)
 
-$(NAME):
-		$(CC) $(FLAGS) $(SRC) $(UTILS) -o $(NAME) $(READLINE) $(NCURSES)
+all: $(NAME)
+
+$(NAME) : $(OBJ) $(UTILSOBJ)
+	@$(CC) $(FLAGS) -o $(NAME) $(NCURSES) $(OBJ) $(UTILSOBJ)
 
 clean:
-		rm -f $(NAME)
+	@rm -f $(OBJ) $(UTILSOBJ)
 
-all:	$(NAME)
+fclean: clean
+	@rm -f $(NAME)
 
-re:		clean
-		$(NAME)
+re: fclean all
+
+.PHONY: all clean re
