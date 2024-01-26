@@ -34,6 +34,7 @@
 
 void	ft_setup_server(char *arg)
 {
+	printf("setting up server");
 	int	sockfd;
 	int	connfd;
 	int	len;

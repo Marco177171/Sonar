@@ -18,9 +18,9 @@ void	ft_command_legend(void)
 {
 	printf("----------------------------------------------\n");
 	printf("COMMANDS:\n");
-	printf("room: create and host new private room.\n");
-	printf("connect: connect to remote ip.\n");
-	printf("join: join existing room. You'll need it's key\n");
+	printf("room <room_name> <room_password>: create and host new private room.\n");
+	printf("connect <remote_ip>: connect to remote ip.\n");
+	printf("join <remote_ip> <room_name> <room_password>: join existing room. You'll need it's key\n");
 	printf("exit: close Sonar\n");
 	printf("----------------------------------------------\n");
 }
